@@ -40,12 +40,16 @@ public class Dslr2Drl {
 			System.err.println( "syntax: Dslr2Drl sentences.dslr transform.dsl > output.drl" );
 			System.exit(1);
 		}
-		// String dslr = "rule 'foo' \n when \n Something \n then \n another \nend";
-		String dslr = readFileAsString( args[0] );
-		// String dsl = "[condition]Something=Something()\n[then]another=another();";
-		String dsl = readFileAsString( args[1] );
-		// String expect = "rule 'foo' \n when \n Something() \n then \n another(); \nend";
 
+		//String dslr = readFileAsString( args[0] );
+		//String dsl = readFileAsString( args[1] );
+
+
+		String dslr = "rule 'foo' \r\n when \r\n Something \r\n then \r\n another \r\nend";
+		String dsl = "[condition]Something=Something()\r\n[then]another=another();";
+		
+		// String expect = "rule 'foo' \n when \n Something() \n then \n another(); \nend";
+		
 		DrlParser parser = new DrlParser();
 		String result = parser.getExpandedDRL( dslr, new StringReader(dsl) );
 		System.out.println( result );
